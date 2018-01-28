@@ -2,110 +2,77 @@
 import nltk
 from nltk.probability import FreqDist
 
-#oppgave 1
+#First part
 
-grammatikk = nltk.CFG.fromstring("""
+grammar = nltk.CFG.fromstring("""
   S -> NP VP
   VP -> V NP | V NP PP | V NP NP | V
   PP -> P NP
-  V -> "gir" | "sover" | "spiser" | "finner"
-  NP -> "Per" | "Kari" | "Ola" | "middag" | "boka" | Det N
-  Det -> "en"
-  N -> "bok"
-  P -> "til"
+  V -> "gives" | "sleeps" | "eats" | "finds"
+  NP -> "Per" | "Kari" | "Ola" | "dinner" | "book" | Det N
+  Det -> "a" | "the"
+  N -> "book"
+  P -> "to"
   """)
 
-setning = "Per gir en bok til Kari".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
+sentence = "Per gives a book to Kari".split()
+rd_parser = nltk.RecursiveDescentParser(grammar)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-setning = "Kari gir Per boka".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
+sentence = "Kari gives Per the book".split()
+rd_parser = nltk.RecursiveDescentParser(grammar)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-setning = "Ola sover".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
+sentence = "Ola sleeps".split()
+rd_parser = nltk.RecursiveDescentParser(grammar)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-setning = "Kari spiser".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
+sentence = "Kari eats".split()
+rd_parser = nltk.RecursiveDescentParser(grammar)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-setning = "Kari spiser middag".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
+sentence = "Kari eats dinner".split()
+rd_parser = nltk.RecursiveDescentParser(grammar)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-setning = "Per finner boka".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
+sentence = "Per finds the book".split()
+rd_parser = nltk.RecursiveDescentParser(grammar)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-"""
-(S
-  (NP Per)
-  (VP (V gir) (NP (Det en) (N bok)) (PP (P til) (NP Kari))))
-(S (NP Kari) (VP (V gir) (NP Per) (NP boka)))
-(S (NP Ola) (VP (V sover)))
-(S (NP Kari) (VP (V spiser)))
-(S (NP Kari) (VP (V spiser) (NP middag)))
-(S (NP Per) (VP (V finner) (NP boka)))
-"""
-"""
-setning = "Kari sover boka".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
-    print(tre)
-setning = "Ola finner".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk)
-for tre in rd_parser.parse(setning):
-    print(tre)
 
-(S (NP Kari) (VP (V sover) (NP boka)))
-(S (NP Ola) (VP (V finner)))
-
-"""
-grammatikk2 = nltk.CFG.fromstring("""
+grammar2 = nltk.CFG.fromstring("""
   S -> NP VP
   VP -> Vt NP | Vt NP PP | Vt NP NP | Vi
   PP -> P NP
-  Vi -> "sover"| "spiser"
-  Vt -> "gir" | "spiser" | "finner"
-  NP -> "Per" | "Kari" | "Ola" | "middag" | "boka" | Det N
-  Det -> "en"
-  N -> "bok"
-  P -> "til"
+  Vi -> "sleeps"| "eats"
+  Vt -> "gives" | "eats" | "finds"
+  NP -> "Per" | "Kari" | "Ola" | "dinner" | "book" | Det N
+  Det -> "a" | "the"
+  N -> "book"
+  P -> "to"
   """)
 
 
-setning = "Kari sover boka".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk2)
-for tre in rd_parser.parse(setning):
+sentence = "Kari sleeps the book".split()
+rd_parser = nltk.RecursiveDescentParser(grammar2)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-setning = "Ola finner".split()
-rd_parser = nltk.RecursiveDescentParser(grammatikk2)
-for tre in rd_parser.parse(setning):
+sentence = "Ola finds".split()
+rd_parser = nltk.RecursiveDescentParser(grammar2)
+for tre in rd_parser.parse(sentence):
     print(tre)
 
-#skrives ut ikke noe siden de er ikke lovlige setninger: ugrammatiske.
+#skrives ut ikke noe siden de er ikke lovlige sentenceer: ugrammatiske.
 
 
-#oppgave 2
-
- #setning 1. : verb leave 7
- #setning 2. : verb leave 11
- #setning 3. : verb leave 8
- #setning 4. : verb leave 5
- #setning 5. : verb leave 13
-
-#setning 13 var veldig vaskelig å forstå hva de menteself.
-
-#oppgave 3
+#Second part
 from collections import defaultdict
 
 d = defaultdict(list)
@@ -147,20 +114,20 @@ surface_antall = liste.count("surface")
 
 
 
-print("Antall keys i removing er ",counter)
+print("The number of words in 'Removing' is",counter)
 
 
 def sannsynlighet_gitt_removing(antall):
      return antall / counter
 
 
-print("Sannsynligheten av foam gitt removing er:", sannsynlighet_gitt_removing(foam_antall))
-print("Sannsynligheten av breakfast gitt removing er:", sannsynlighet_gitt_removing(breakfast_antall))
-print("Sannsynligheten av jam gitt removing er:", sannsynlighet_gitt_removing(jam_antall))
-print("Sannsynligheten av paper gitt removing er:", sannsynlighet_gitt_removing(paper_antall))
-print("Sannsynligheten av closely gitt removing er:", sannsynlighet_gitt_removing(closely_antall))
-print("Sannsynligheten av day gitt removing er:", sannsynlighet_gitt_removing(day_antall))
-print("Sannsynligheten av surface gitt removing er:", sannsynlighet_gitt_removing(surface_antall))
+print("The probability for 'foam' giving 'removing' is:", sannsynlighet_gitt_removing(foam_antall))
+print("The probability for 'breakfast' giving 'removing' is:", sannsynlighet_gitt_removing(breakfast_antall))
+print("The probability for 'jam' giving 'removing' is:", sannsynlighet_gitt_removing(jam_antall))
+print("The probability for 'paper' giving 'removing' is:", sannsynlighet_gitt_removing(paper_antall))
+print("The probability for 'closely' giving 'removing' is:", sannsynlighet_gitt_removing(closely_antall))
+print("The probability for 'day' giving 'removing' is:", sannsynlighet_gitt_removing(day_antall))
+print("The probability for 'surface' giving 'removing' is:", sannsynlighet_gitt_removing(surface_antall))
 
 
 counter2 = 0
@@ -186,24 +153,24 @@ paper_antall = liste.count("paper")
 
 
 
-print("Antall keys i selfmotion er ",counter2)
+print("Number of keys in 'selfmotion' is ",counter2)
 
 
 def sannsynlighet_gitt_selfmotion(antall):
      return antall / counter2
 
 
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(across_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(lake_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(surface_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(day_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(low_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(road_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(light_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(towards_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(closely_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(tarmac_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_selfmotion(paper_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(across_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(lake_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(surface_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(day_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(low_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(road_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(light_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(towards_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(closely_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(tarmac_antall))
+print("The probability is:", sannsynlighet_gitt_selfmotion(paper_antall))
 
 counter3 = 0
 liste = []
@@ -229,25 +196,25 @@ glasses_antall = liste.count("glasses")
 
 
 
-print("Antall keys i reading er ",counter3)
+print("The number of keys in 'reading' is ",counter3)
 
 
 def sannsynlighet_gitt_reading(antall):
      return antall / counter3
 
 
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(across_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(novel_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(glasses_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(day_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(low_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(breakfast_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(section_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(tarmac_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(paper_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(book_antall))
-print("Sannsynligheten er:", sannsynlighet_gitt_reading(light_antall))
+print("The probability is:", sannsynlighet_gitt_reading(across_antall))
+print("The probability is:", sannsynlighet_gitt_reading(novel_antall))
+print("The probability is:", sannsynlighet_gitt_reading(glasses_antall))
+print("The probability is:", sannsynlighet_gitt_reading(day_antall))
+print("The probability is:", sannsynlighet_gitt_reading(low_antall))
+print("The probability is:", sannsynlighet_gitt_reading(breakfast_antall))
+print("The probability is:", sannsynlighet_gitt_reading(section_antall))
+print("The probability is:", sannsynlighet_gitt_reading(tarmac_antall))
+print("The probability is:", sannsynlighet_gitt_reading(paper_antall))
+print("The probability is:", sannsynlighet_gitt_reading(book_antall))
+print("The probability is:", sannsynlighet_gitt_reading(light_antall))
 
 resultat = counter + counter2 + counter3
 print(resultat)
-print("Sannsynlighet av Removing er:", 2/16)
+print("The probability of 'Removing' is:", 2/16)
