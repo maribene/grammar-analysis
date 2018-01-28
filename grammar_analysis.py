@@ -17,33 +17,33 @@ grammar = nltk.CFG.fromstring("""
 
 sentence = "Per gives a book to Kari".split()
 rd_parser = nltk.RecursiveDescentParser(grammar)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 sentence = "Kari gives Per the book".split()
 rd_parser = nltk.RecursiveDescentParser(grammar)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 sentence = "Ola sleeps".split()
 rd_parser = nltk.RecursiveDescentParser(grammar)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 sentence = "Kari eats".split()
 rd_parser = nltk.RecursiveDescentParser(grammar)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 sentence = "Kari eats dinner".split()
 rd_parser = nltk.RecursiveDescentParser(grammar)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 sentence = "Per finds the book".split()
 rd_parser = nltk.RecursiveDescentParser(grammar)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 
 grammar2 = nltk.CFG.fromstring("""
@@ -61,13 +61,13 @@ grammar2 = nltk.CFG.fromstring("""
 
 sentence = "Kari sleeps the book".split()
 rd_parser = nltk.RecursiveDescentParser(grammar2)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 sentence = "Ola finds".split()
 rd_parser = nltk.RecursiveDescentParser(grammar2)
-for tre in rd_parser.parse(sentence):
-    print(tre)
+for tree in rd_parser.parse(sentence):
+    print(tree)
 
 #skrives ut ikke noe siden de er ikke lovlige sentenceer: ugrammatiske.
 
@@ -104,30 +104,30 @@ for elem in d["Removing"]:
         liste.append(i)
 
 
-foam_antall = liste.count("foam")
-breakfast_antall = liste.count("breakfast")
-jam_antall = liste.count("jam")
-paper_antall = liste.count("paper")
-closely_antall = liste.count("closely")
-day_antall = liste.count("day")
-surface_antall = liste.count("surface")
+foam_nr = liste.count("foam")
+breakfast_nr = liste.count("breakfast")
+jam_nr = liste.count("jam")
+paper_nr = liste.count("paper")
+closely_nr = liste.count("closely")
+day_nr = liste.count("day")
+surface_nr = liste.count("surface")
 
 
 
 print("The number of words in 'Removing' is",counter)
 
 
-def sannsynlighet_gitt_removing(antall):
-     return antall / counter
+def sannsynlighet_gitt_removing(nr):
+     return nr / counter
 
 
-print("The probability for 'foam' giving 'removing' is:", sannsynlighet_gitt_removing(foam_antall))
-print("The probability for 'breakfast' giving 'removing' is:", sannsynlighet_gitt_removing(breakfast_antall))
-print("The probability for 'jam' giving 'removing' is:", sannsynlighet_gitt_removing(jam_antall))
-print("The probability for 'paper' giving 'removing' is:", sannsynlighet_gitt_removing(paper_antall))
-print("The probability for 'closely' giving 'removing' is:", sannsynlighet_gitt_removing(closely_antall))
-print("The probability for 'day' giving 'removing' is:", sannsynlighet_gitt_removing(day_antall))
-print("The probability for 'surface' giving 'removing' is:", sannsynlighet_gitt_removing(surface_antall))
+print("The probability for 'foam' giving 'removing' is:", sannsynlighet_gitt_removing(foam_nr))
+print("The probability for 'breakfast' giving 'removing' is:", sannsynlighet_gitt_removing(breakfast_nr))
+print("The probability for 'jam' giving 'removing' is:", sannsynlighet_gitt_removing(jam_nr))
+print("The probability for 'paper' giving 'removing' is:", sannsynlighet_gitt_removing(paper_nr))
+print("The probability for 'closely' giving 'removing' is:", sannsynlighet_gitt_removing(closely_nr))
+print("The probability for 'day' giving 'removing' is:", sannsynlighet_gitt_removing(day_nr))
+print("The probability for 'surface' giving 'removing' is:", sannsynlighet_gitt_removing(surface_nr))
 
 
 counter2 = 0
@@ -139,38 +139,38 @@ for elem in d["Self_motion"]:
         liste.append(i)
 
 
-across_antall = liste.count("across")
-lake_antall = liste.count("lake")
-surface_antall = liste.count("surface")
-day_antall = liste.count("day")
-low_antall = liste.count("low")
-road_antall = liste.count("road")
-light_antall = liste.count("light")
-towards_antall = liste.count("towards")
-closely_antall = liste.count("closely")
-tarmac_antall = liste.count("tarmac")
-paper_antall = liste.count("paper")
+across_nr = liste.count("across")
+lake_nr = liste.count("lake")
+surface_nr = liste.count("surface")
+day_nr = liste.count("day")
+low_nr = liste.count("low")
+road_nr = liste.count("road")
+light_nr = liste.count("light")
+towards_nr = liste.count("towards")
+closely_nr = liste.count("closely")
+tarmac_nr = liste.count("tarmac")
+paper_nr = liste.count("paper")
 
 
 
 print("Number of keys in 'selfmotion' is ",counter2)
 
 
-def sannsynlighet_gitt_selfmotion(antall):
-     return antall / counter2
+def probability_giving_selfmotion(nr):
+     return nr / counter2
 
 
-print("The probability is:", sannsynlighet_gitt_selfmotion(across_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(lake_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(surface_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(day_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(low_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(road_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(light_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(towards_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(closely_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(tarmac_antall))
-print("The probability is:", sannsynlighet_gitt_selfmotion(paper_antall))
+print("The probability is:", probability_giving_selfmotion(across_nr))
+print("The probability is:", probability_giving_selfmotion(lake_nr))
+print("The probability is:", probability_giving_selfmotion(surface_nr))
+print("The probability is:", probability_giving_selfmotion(day_nr))
+print("The probability is:", probability_giving_selfmotion(low_nr))
+print("The probability is:", probability_giving_selfmotion(road_nr))
+print("The probability is:", probability_giving_selfmotion(light_nr))
+print("The probability is:", probability_giving_selfmotion(towards_nr))
+print("The probability is:", probability_giving_selfmotion(closely_nr))
+print("The probability is:", probability_giving_selfmotion(tarmac_nr))
+print("The probability is:", probability_giving_selfmotion(paper_nr))
 
 counter3 = 0
 liste = []
@@ -180,17 +180,17 @@ for elem in d["Reading"]:
         counter3+=1
         liste.append(i)
 
-tarmac_antall = liste.count("tarmac")
-section_antall = liste.count("section")
-paper_antall = liste.count("paper")
-day_antall = liste.count("day")
-book_antall = liste.count("book")
-novel_antall = liste.count("novel")
-breakfast_antall = liste.count("breakfast")
-low_antall = liste.count("low")
-light_antall = liste.count("light")
-across_antall = liste.count("across")
-glasses_antall = liste.count("glasses")
+tarmac_nr = liste.count("tarmac")
+section_nr = liste.count("section")
+paper_nr = liste.count("paper")
+day_nr = liste.count("day")
+book_nr = liste.count("book")
+novel_nr = liste.count("novel")
+breakfast_nr = liste.count("breakfast")
+low_nr = liste.count("low")
+light_nr = liste.count("light")
+across_nr = liste.count("across")
+glasses_nr = liste.count("glasses")
 
 
 
@@ -199,21 +199,21 @@ glasses_antall = liste.count("glasses")
 print("The number of keys in 'reading' is ",counter3)
 
 
-def sannsynlighet_gitt_reading(antall):
-     return antall / counter3
+def probability_giving_reading(nr):
+     return nr / counter3
 
 
-print("The probability is:", sannsynlighet_gitt_reading(across_antall))
-print("The probability is:", sannsynlighet_gitt_reading(novel_antall))
-print("The probability is:", sannsynlighet_gitt_reading(glasses_antall))
-print("The probability is:", sannsynlighet_gitt_reading(day_antall))
-print("The probability is:", sannsynlighet_gitt_reading(low_antall))
-print("The probability is:", sannsynlighet_gitt_reading(breakfast_antall))
-print("The probability is:", sannsynlighet_gitt_reading(section_antall))
-print("The probability is:", sannsynlighet_gitt_reading(tarmac_antall))
-print("The probability is:", sannsynlighet_gitt_reading(paper_antall))
-print("The probability is:", sannsynlighet_gitt_reading(book_antall))
-print("The probability is:", sannsynlighet_gitt_reading(light_antall))
+print("The probability is:", probability_giving_reading(across_nr))
+print("The probability is:", probability_giving_reading(novel_nr))
+print("The probability is:", probability_giving_reading(glasses_nr))
+print("The probability is:", probability_giving_reading(day_nr))
+print("The probability is:", probability_giving_reading(low_nr))
+print("The probability is:", probability_giving_reading(breakfast_nr))
+print("The probability is:", probability_giving_reading(section_nr))
+print("The probability is:", probability_giving_reading(tarmac_nr))
+print("The probability is:", probability_giving_reading(paper_nr))
+print("The probability is:", probability_giving_reading(book_nr))
+print("The probability is:", probability_giving_reading(light_nr))
 
 resultat = counter + counter2 + counter3
 print(resultat)
