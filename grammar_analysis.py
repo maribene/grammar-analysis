@@ -89,6 +89,7 @@ try:
         tree = toTree(t)
         printTree(tree, tree[''][0], nodeMap)
         grammaticOk = 1;
+        break
 
     if grammaticOk == 0:
 
